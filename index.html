@@ -18,8 +18,60 @@
     </header>
 
     <main id="formContainer">
-      <!-- Konten form dan admin panel dimuat oleh JS -->
-      <noscript>Aktifkan JavaScript untuk menggunakan form ini.</noscript>
+      <section id="formSection">
+        <h3>🧺 Form Pemesanan</h3>
+
+        <label>👤 Nama:</label>
+        <input type="text" id="nama" placeholder="Nama pelanggan">
+
+        <label>🧥 Jenis Laundry:</label>
+        <div id="jenisGroup">
+          <button class="btn" onclick="pilihJenis('Kiloan', this)">Kiloan</button>
+          <button class="btn" onclick="pilihJenis('Satuan', this)">Satuan</button>
+        </div>
+
+        <div id="layananGroup">
+          <button class="layanan-btn kiloan" onclick="pilihLayanan('Cuci + Setrika', this)">Cuci + Setrika</button>
+          <button class="layanan-btn kiloan" onclick="pilihLayanan('Cuci Kering', this)">Cuci Kering</button>
+          <button class="layanan-btn satuan" style="display:none" onclick="pilihLayanan('Dry Clean', this)">Dry Clean</button>
+          <button class="layanan-btn satuan" style="display:none" onclick="pilihLayanan('Bedcover', this)">Bedcover</button>
+        </div>
+
+        <label>⏳ Estimasi:</label>
+        <select id="estimasi">
+          <option value="Reguler (2-3 Hari)">Reguler (2-3 Hari)</option>
+          <option value="Express (1 Hari)">Express (1 Hari)</option>
+        </select>
+
+        <label>🚚 Layanan:</label>
+        <select id="delivery" onchange="updateDeliveryLabels()">
+          <option value="Jemput">Jemput</option>
+          <option value="Antar">Antar</option>
+          <option value="Jemput & Antar">Jemput & Antar</option>
+        </select>
+
+        <label id="labelWaktu">🕒 Waktu Penjemputan:</label>
+        <input type="text" id="waktu" placeholder="Misal: Besok jam 10 pagi">
+
+        <label id="labelLokasi">📍 Lokasi Penjemputan:</label>
+        <div class="lokasi-area">
+          <input type="text" id="lokasi" placeholder="Klik 📍 untuk ambil lokasi otomatis">
+          <button onclick="ambilLokasi()">📍</button>
+        </div>
+        <small id="noteLokasi">📍 Aktifkan lokasi untuk penjemputan cepat.</small>
+
+        <label>🏠 Alamat Lengkap:</label>
+        <textarea id="alamat" rows="2" placeholder="Nama jalan, nomor rumah, RT/RW..."></textarea>
+
+        <div class="btn-group">
+          <button class="btn-send" onclick="kirimPesan('admin')">Kirim ke Admin</button>
+          <button class="btn-send" onclick="kirimPesan('kurir')">Kirim ke Kurir</button>
+        </div>
+      </section>
+
+      <section id="adminPanel">
+        <button id="adminBtn" onclick="toggleAdmin()">🔐 Admin Panel</button>
+      </section>
     </main>
 
     <footer>
